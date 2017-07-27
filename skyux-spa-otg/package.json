@@ -14,10 +14,13 @@
   "author": "Blackbaud",
   "license": "ISC",
   "dependencies": {
-    "@blackbaud/skyux": "2.0.0-rc.9"
+    "@blackbaud/skyux": "2.0.0-rc.9",
+    "d3-ng2-service": "^1.16.0"
   },
   "devDependencies": {
-    "@blackbaud/skyux-builder": "1.0.0-rc.12"
+    "@angular/cli": "^1.2.5",
+    "@blackbaud/skyux-builder": "1.0.0-rc.12",
+    "d3-ng2-service": "1.16.0"
   },
   "repository": {
     "type": "git",
