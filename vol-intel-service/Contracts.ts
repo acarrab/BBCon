@@ -1,19 +1,33 @@
+interface EventId extends String { }
+interface NonprofitId extends String { }
+interface FormId extends String { }
+interface VolunteerId extends String { }
 
 export namespace Get {
-    export interface NPEvent {
-        id: String
+    export interface Nonprofit {
+        id: NonprofitId
+        
         name: String
-        date_time: String
-        nonProfitName: String
+        events: Array<NPEvent>
     }
+
+    export interface NPEvent {
+        id: EventId
+
+        name: String
+        date_time: String 
+        nonprofit_name: String
+    }
+
     export interface Volunteer {
+        id: VolunteerId
+
         email: String
         first_name: String
         last_name: String
 
         organization: String
         eventId: String
-        id: String
 
         hours: Number
         connections: Number
@@ -27,6 +41,7 @@ export namespace Post {
         first_name: String
         last_name: String
     }
+
     export interface NPEvent {
         name: String
         nonprofitName: String
