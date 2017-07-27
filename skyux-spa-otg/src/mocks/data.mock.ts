@@ -43,6 +43,7 @@ let connectionTreeMock: ConnectionNode = {
   children: new Array<ConnectionNode>()
 };
 
+export let addEventResult = 'someEventId';
 export let nonprofitEventData = nonprofitEventMocks;
 export let volunteerByNonprofitData = volunteerByNonprofitMocks;
 export let volunteerByEventData = volunteerByEventMocks;

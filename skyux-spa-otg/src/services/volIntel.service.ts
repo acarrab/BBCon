@@ -69,4 +69,22 @@ export class VolIntelService {
       }));
     return connectionTree;
   }
+
+  public async addEvent(nonprofitName: string, name: string, dateTime: string): Promise<string> {
+    let route = this.volIntelHost + '/events/add';
+    let eventId = '';
+    await this.skyAuthHttp
+      .post(route, {
+        nonprofitName: nonprofitName,
+        name: name,
+        dateTime: dateTime
+      })
+      .subscribe((response: Response) => {
+        eventId = response.json();
+      }, (error => {
+        alert(error);
+      }));
+    return eventId;
+  }
+
 }
