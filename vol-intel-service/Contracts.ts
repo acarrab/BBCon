@@ -6,7 +6,7 @@ interface VolunteerId extends String { }
 export namespace Get {
     export interface Nonprofit {
         id: NonprofitId
-        
+
         name: String
         events: Array<NPEvent>
     }
