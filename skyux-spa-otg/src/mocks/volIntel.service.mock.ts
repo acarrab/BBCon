@@ -13,19 +13,19 @@ import {
 
 export class VolIntelService {
 
-  public getAllEvents(nonprofitName: string): Array<NonprofitEvent> {
+  public async getAllEvents(nonprofitName: string): Promise<Array<NonprofitEvent>> {
     return nonprofitEventData;
   }
 
-  public getVolunteersByNonprofit(nonprofitName: string): Array<Volunteer> {
+  public async getVolunteersByNonprofit(nonprofitName: string): Promise<Array<Volunteer>> {
     return volunteerByNonprofitData;
   }
 
-  public getVolunteersByEvent(eventId: string): Array<Volunteer> {
+  public async getVolunteersByEvent(eventId: string): Promise<Array<Volunteer>> {
     return volunteerByEventData;
   }
 
-  public getConnectionTree(eventId: string): ConnectionNode {
+  public async getConnectionTree(eventId: string): Promise<ConnectionNode> {
     return connectionTreeData;
   }
 }
