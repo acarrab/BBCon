@@ -1,0 +1,93 @@
+<app-nav></app-nav>
+<h1 class="sky-page-heading">Volunteer Form</h1>
+
+<sky-alert alertType="warning">
+  <strong>Warning!</strong> If someone referred you to this volunteer event, please fill out the form using their referral link.
+</sky-alert>
+
+<div style="border: 1px solid #F6F6F6; margin: 50px 300px; background-color: #F6F6F6; box-shadow: -1px 1px 87px -20px rgba(0,0,0,0.75);">
+  <div style="margin: 100px 150px;">
+      <h1>New Volunteer Entry</h1>
+
+      <form #f="ngForm" novalidate (ngSubmit)="save(f.value, f.valid)">
+
+        <!--name-->
+        <div style="padding-bottom: 10px;">
+            <label for="first-name" class="sky-control-label sky-control-label-required">First Name</label>
+            <input class="sky-form-control" type="text" name="fname" id="first-name" [(ngModel)]="volunteer.fname" #fname="ngModel" required minlength="5">
+            <!--show error only when field is not valid & it's dirty or form submited-->
+            <small [hidden]="fname.valid || (fname.pristine && !f.submitted)">
+                First Name is required (minimum 5 characters).
+            </small>
+        </div>
+        <div style="padding-bottom: 10px;">
+            <label for="last-name" class="sky-control-label sky-control-label-required">Last Name</label>
+            <input class="sky-form-control" type="text" name="lname" id="last-name" [(ngModel)]="volunteer.lname" #lname="ngModel" required minlength="5">
+            <!--show error only when field is not valid & it's dirty or form submited-->
+            <small [hidden]="lname.valid || (lname.pristine && !f.submitted)">
+                Last Name is required (minimum 5 characters).
+            </small>
+        </div>
+
+        <!--email-->
+        <div style="padding-bottom: 10px;">
+          <label for="vol-email" class="sky-control-label sky-control-label-required">Email</label>
+          <input class="sky-form-control" type="email" name="email" id="vol-email" [(ngModel)]="volunteer.email" #email="ngModel" skyEmailValidation>
+          <!--show error only when field is not valid & it's dirty or form submited-->
+          <div class="sky-error-label" *ngIf="email.errors && email.errors.skyEmail && (email.dirty && email.touched)">
+            <span [hidden]="!email.errors.skyEmail.invalid">
+                Please enter valid email with format joe@abc.com.
+            </span>
+          </div>
+        </div>
+
+        <!--nonprofit-->
+        <div style="padding-bottom: 10px;">
+          <label for="non-profit" class="sky-control-label sky-control-label-required">Non-profit</label>
+            <input class="sky-form-control" type="text" name="nonProfit" id="non-profit" [(ngModel)]="volunteer.nonProfit" #nonProfit="ngModel">
+            <!--show error only when field is not valid & it's dirty or form submited-->
+            <small [hidden]="nonProfit.valid || (nonProfit.pristine && !f.submitted)">
+                The name of the Non-profit is required.
+            </small>
+        </div>
+
+        <!--event-->
+        <div style="padding-bottom: 10px;">
+          <label for="np-event" class="sky-control-label sky-control-label-required">Event</label>
+            <input class="sky-form-control" type="text" name="event" id="np-event" [(ngModel)]="volunteer.event" #event="ngModel">
+            <!--show error only when field is not valid & it's dirty or form submited-->
+            <small [hidden]="event.valid || (event.pristine && !f.submitted)">
+                The event is required.
+            </small>
+        </div>
+
+        <!--volunteer hours-->
+        <div style="padding-bottom: 10px;">
+          <label for="vol-hours" class="sky-control-label sky-control-label-required">Volunteer Hours</label>
+            <input class="sky-form-control" type="number" name="hours" id="vol-hours" [(ngModel)]="volunteer.hours" #hours="ngModel">
+            <!--show error only when field is not valid & it's dirty or form submited-->
+            <small [hidden]="hours.valid || (hours.pristine && !f.submitted)">
+                An estimate for the hours volunteered is required.
+            </small>
+        </div>
+
+        <!--volunteer date-->
+        <div style="max-width: 50%; padding-bottom: 30px;">
+          <label for="vol-date" class="sky-control-label sky-control-label-required">Volunteer Date</label>
+          <sky-datepicker #picker>
+            <input class="sky-form-control" name="volDate" id="vol-date" [(ngModel)]="volunteer.volDate" [skyDatepickerInput]="picker" #volDate="ngModel"/>
+          </sky-datepicker>
+          <div class="sky-error-label" *ngIf="volDate.errors && volDate.errors.skyDate && (volDate.dirty || volDate.touched)">
+            <span [hidden]="!volDate.errors.skyDate.invalid">Please enter a valid date.</span>
+          </div>
+        </div>
+
+        <!--referral-->
+        <div>
+            <input type="hidden" name="referral" [(ngModel)]="volunteer.referral" #referral="ngModel">
+        </div>
+        
+        <button class="sky-form-control sky-btn sky-btn-primary" style="max-width: 30%; margin: auto; display: block;" type="submit">Submit</button>
+      </form> 
+  </div>
+</div>
