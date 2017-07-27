@@ -8,11 +8,11 @@
     "_description": "The text for the About top-level navigation item"
   },
   "app_nav_home": {
-    "message": "Home",
+    "message": "Welcome",
     "_description": "The text for the Home top-level navigation item"
   },
   "home_title": {
-    "message": "SKY UX Template",
+    "message": "Welcome to Vol-Intel",
     "_description": "Title for the home component"
   }
 }
