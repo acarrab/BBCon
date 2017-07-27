@@ -1,0 +1,19 @@
+.image{
+    position: relative;
+}
+
+h1 {
+   position: absolute; 
+   top: 200px; 
+   left: 0; 
+   width: 100%;
+   color:white;
+}
+
+.img {
+   position: absolute; 
+   top: 200px; 
+   left: 325px; 
+   width: 100%;
+   color: white;
+}
