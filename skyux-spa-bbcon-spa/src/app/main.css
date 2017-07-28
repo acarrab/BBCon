@@ -1,8 +1,12 @@
-.image{
+#welcome-area {
     position: relative;
 }
 
-h1 {
+.welcomeMargin {
+    margin-left: 50px;
+}
+
+.overlayText {
    position: absolute; 
    top: 200px; 
    left: 0; 
@@ -10,7 +14,7 @@ h1 {
    color:white;
 }
 
-.img {
+#welcome-img {
    position: absolute; 
    top: 200px; 
    left: 325px; 

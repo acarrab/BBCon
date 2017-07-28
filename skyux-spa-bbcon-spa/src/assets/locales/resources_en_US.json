@@ -4,7 +4,7 @@
     "_description": "The _description property gives context to the translator as to how the string is used in the product"
   },
   "app_nav_form": {
-    "message": "Form",
+    "message": "Volunteer Form",
     "_description": "The volunteer form"
   },
   "app_nav_home": {

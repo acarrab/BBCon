@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Volunteer } from './volunteer.interface';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'my-form',
@@ -13,6 +14,7 @@ import { Volunteer } from './volunteer.interface';
 })
 export class FormComponent implements OnInit {
     public volunteer: Volunteer; // our model
+    constructor(private activatedRoute: ActivatedRoute) {}
 
     ngOnInit() {
       // we will initialize our form here
@@ -26,6 +28,11 @@ export class FormComponent implements OnInit {
           volDate: '',
           referral: ''
       };
+
+      this.activatedRoute.queryParams.subscribe((params: Params) => {
+        let referral = params['referralId'];
+        console.log(referral);
+      });
     }
 
     save(model: Volunteer, isValid: boolean) {
@@ -33,4 +40,5 @@ export class FormComponent implements OnInit {
         // if valid, call API to save customer
         console.log(model, isValid);
     }
+
 }
