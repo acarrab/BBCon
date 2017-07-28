@@ -2,6 +2,7 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { D3Service, D3, Selection } from 'd3-ng2-service';
 import { VolIntelService } from '../../../../mocks/volIntel.service.mock';
 import { NonprofitEvent } from '../../../../contracts/NonprofitEvent.interface';
+import { Volunteer } from '../../../../contracts/Volunteer.interface';
 
 @Component({
   // tslint:disable-next-line
@@ -20,28 +21,29 @@ export class Graph1Component implements OnInit {
     this.d3 = d3Service.getD3(); // <-- obtain the d3 object from the D3 Service
     this.parentNativeElement = element.nativeElement;
     this.intelService = intelService;
+    this.generateD3Data(this);
   }
 
-/*
-  private getEventData () {
-    this.intelService.getAllEvents('').then(function (data) {
-      for (const index of data) {
-        this.eventsIds.push(index.id);
-      }
-    });
-    console.log(this.eventsIds);
-  }*/
+  private generateD3Data (self: any) {
+    // Get event data
+    self.intelService.getAllEvents('')
+      .then(function (eventData) {
+        let promises = new Array<Promise<Array<Volunteer>>>();
+        console.log(self);
+        for (const event of eventData) {
+          promises.push(self.intelService.getVolunteersByEvent(event.id));
+        }
+        return Promise.all(promises);
+      })
+      .then(self.formatEventAndVolunteerData);
+  }
+
+  private formatEventAndVolunteerData (rayray: Array<Array<Volunteer>>) {
+    console.log(rayray);
+  }
 
   // tslint:disable-next-line
   public ngOnInit() {
-
-    let self = this;
-    this.intelService.getAllEvents('').then(function (result) {
-      self.eventData = result;
-      console.log(self.eventData);
-    }, function (error) {
-      console.log(error);
-    });
     const d3 = this.d3;
     let svg = d3.select('#graph1');
     let margins = {top: 50, right: 50, bottom: 50, left: 50};
