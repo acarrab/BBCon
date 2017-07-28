@@ -1,0 +1,55 @@
+<app-nav></app-nav>
+
+<h1 class="sky-page-heading">Non-Profit Form</h1>
+
+ <div [hidden]="submitted" style="border: 1px solid #F6F6F6; margin: 50px 300px; background-color: #F6F6F6; box-shadow: -1px 1px 87px -20px rgba(0,0,0,0.75);"> 
+   <div style="margin: 100px 150px;"> 
+       <h1>New Event Entry</h1> 
+
+       <form #f="ngForm" novalidate (ngSubmit)="onSubmit()"> 
+
+        <!--event name-->
+        
+         <div style="padding-bottom: 10px;">
+            <label for="event-name" class="sky-control-label sky-control-label-required">Event Name</label>
+            <input class="sky-form-control" type="text" name="eventname" id="event-name" [(ngModel)]="event.eventname" #eventname="ngModel" required>
+            <!--show error when field is not valid & it's dirty or form submited-->
+            <small [hidden]="eventname.valid || (eventname.pristine && !f.submitted)">
+                Event Name is required.
+            </small>
+        </div>  
+
+        <!--volunteer date-->
+         <div style="max-width: 50%; padding-bottom: 30px;">
+          <label for="event-date" class="sky-control-label sky-control-label-required">Event Date</label>
+           <sky-datepicker #picker>
+            <input class="sky-form-control" name="date" id="event-date" [(ngModel)]="event.date" [skyDatepickerInput]="picker" #date="ngModel" required>
+          </sky-datepicker> 
+            <div class="sky-error-label" *ngIf="date.errors && date.errors.skyDate && (date.dirty || date.touched)">
+            <span [hidden]="!date.errors.skyDate.invalid">Please enter a valid date.</span>
+          </div>  
+        </div> 
+
+         <button class="sky-form-control sky-btn sky-btn-primary" style="max-width: 30%; margin: auto; display: block;" type="submit">Submit</button> 
+       </form>  
+   </div> 
+ </div> 
+
+ <div [hidden]="!submitted">
+   <div style="border: 1px solid #F6F6F6; margin: 50px 300px; background-color: #F6F6F6; box-shadow: -1px 1px 87px -20px rgba(0,0,0,0.75);"> 
+   <div style="margin: 100px 150px;"> 
+      <h2>You submitted the following:</h2>
+      <div class="row">
+        <div class="col-xs-3">Event Name: {{ event.eventname }} </div>
+        <!-- <div>{{ event.eventname }}</div> -->
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xs-3">Date</div>
+        <div class="col-xs-9 pull-left">{{ event.date }}</div>
+      </div>
+      <br>
+      <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
+   </div>
+ </div>

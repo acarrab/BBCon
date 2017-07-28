@@ -8,7 +8,8 @@ import {
   volunteerByNonprofitData,
   volunteerByEventData,
   volunteerByEventDictData,
-  connectionTreeData
+  connectionTreeData,
+  connectionTreeDictData
 } from '../mocks/data.mock';
 
 @Injectable()
@@ -32,6 +33,9 @@ export class VolIntelService {
   }
 
   public getConnectionTree(eventId: string): Promise<ConnectionNode> {
+    if (eventId in connectionTreeDictData) {
+      return Promise.resolve(connectionTreeDictData[eventId]);
+    }
     return Promise.resolve(connectionTreeData);
   }
 
