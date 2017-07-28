@@ -8,34 +8,39 @@ import {
   volunteerByNonprofitData,
   volunteerByEventData,
   volunteerByEventDictData,
-  connectionTreeData
+  connectionTreeData,
+  connectionTreeDictData
 } from '../mocks/data.mock';
 
 @Injectable()
 
 export class VolIntelService {
 
-  public async getAllEvents(nonprofitName: string): Promise<Array<NonprofitEvent>> {
-    return nonprofitEventData;
+  public getAllEvents(nonprofitName: string): Promise<Array<NonprofitEvent>> {
+    // tslint:disable-next-line:max-line-length
+    return Promise.resolve(nonprofitEventData);
   }
 
-  public async getVolunteersByNonprofit(nonprofitName: string): Promise<Array<Volunteer>> {
-    return volunteerByNonprofitData;
+  public getVolunteersByNonprofit(nonprofitName: string): Promise<Array<Volunteer>> {
+    return Promise.resolve(volunteerByNonprofitData);
   }
 
-  public async getVolunteersByEvent(eventId: string): Promise<Array<Volunteer>> {
+  public getVolunteersByEvent(eventId: string): Promise<Array<Volunteer>> {
     if (eventId in volunteerByEventDictData) {
-      return volunteerByEventDictData[eventId];
+      return Promise.resolve(volunteerByEventDictData[eventId]);
     }
-    return volunteerByEventData;
+    return Promise.resolve(volunteerByEventData);
   }
 
-  public async getConnectionTree(eventId: string): Promise<ConnectionNode> {
-    return connectionTreeData;
+  public getConnectionTree(eventId: string): Promise<ConnectionNode> {
+    if (eventId in connectionTreeDictData) {
+      return Promise.resolve(connectionTreeDictData[eventId]);
+    }
+    return Promise.resolve(connectionTreeData);
   }
 
-  public async addEvent(nonprofitName: string, name: string, dateTime: string): Promise<string> {
-    return addEventResult;
+  public addEvent(nonprofitName: string, name: string, dateTime: string): Promise<string> {
+    return Promise.resolve(addEventResult);
   }
 
 }
