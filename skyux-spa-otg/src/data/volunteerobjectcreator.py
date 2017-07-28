@@ -37,11 +37,13 @@ def writeVolunteerRow(writer, row, isFirstRow, offset=''):
 def writeConnectionTree(writer, eventId, rootDict, offset):
     root = {
         'id': eventId,
-        'children': []
+        'children': [],
+        'hasParent': False
     }
 
     for emailKey in rootDict.keys():
-        root['children'].append(rootDict[emailKey])
+        if not rootDict[emailKey]['hasParent']:
+            root['children'].append(rootDict[emailKey])
 
     writeConnectionNode(writer, root, offset)
 
@@ -60,12 +62,15 @@ def writeConnectionNode(writer, node, offset):
     writer.write(offset + '}')
 
 def putConnection(emailKey, connectionDict):
-    if not emailKey in connectionDict.keys():
+    isNew = not emailKey in connectionDict.keys()
+
+    if isNew:
         connectionDict[emailKey] = {
             'id': emailKey,
-            'children': []
+            'children': [],
+            'hasParent': False
         }
-    return connectionDict[emailKey]
+    return (connectionDict[emailKey], isNew)
 
 with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as events_file, open('volunteers.ts', 'w') as output_ts_file:
     output_ts_file.write('import { NonprofitEvent } from \'../contracts/NonprofitEvent.interface\';\n')
@@ -161,10 +166,11 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
         for row in volunteers_dict[eventId]:
             # Track connections!
             emailKey = row[EMAIL]
-            root = putConnection(emailKey, connectionTreeRootsDict)
+            root, isRootNew = putConnection(emailKey, connectionTreeRootsDict)
             connections = row[CONNECTS].split(",")
             for connection in connections:
-                kid = putConnection(connection, connectionTreeRootsDict)
+                kid, isKidNew = putConnection(connection.strip(), connectionTreeRootsDict)
+                kid['hasParent'] = True
                 root['children'].append(kid)
 
             writeVolunteerRow(output_ts_file, row, isFirstRow, '  ')
