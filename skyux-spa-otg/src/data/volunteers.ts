@@ -592,11 +592,13 @@ let volunteerByEventMocks: Array<Volunteer> = [{
     hours: 0,
     connections: 0,
     avalancheHours: 0
-    }];
+}];
+
 let connectionTreeMock: ConnectionNode = {
     id: '',
     children: new Array<ConnectionNode>()
-    };
+};
+
 export let volunteerByNonprofitData = volunteerByNonprofitMocks;
 export let nonprofitEventData = nonprofitEventMocks;
 export let volunteerByEventData = volunteerByEventMocks;
