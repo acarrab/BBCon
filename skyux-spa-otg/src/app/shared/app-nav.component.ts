@@ -12,8 +12,8 @@ export class AppNavComponent {
       path: '/'
     },
     {
-      titleKey: 'app_nav_about',
-      path: '/about'
+      titleKey: 'app_nav_form',
+      path: '/form'
     },
     {
       titleKey: 'Volunteering',
