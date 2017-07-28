@@ -95,6 +95,7 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('\n')
 
     # Export Calls
+    output_ts_file.write('export let addEventResult: string = \'fakeEventId\;\n')
     output_ts_file.write('export let volunteerByNonprofitData = volunteerByNonprofitMocks;\n')
     output_ts_file.write('export let nonprofitEventData = nonprofitEventMocks;\n')
     output_ts_file.write('export let volunteerByEventData = volunteerByEventMocks;\n')
