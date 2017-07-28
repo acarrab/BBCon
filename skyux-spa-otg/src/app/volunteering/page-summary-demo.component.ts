@@ -5,11 +5,9 @@ import { Component } from '@angular/core';
   templateUrl: './page-summary-demo.component.html'
 })
 export class SkyPageSummaryDemoComponent {
-  public name = 'Robert C. Hernandez';
+  public name = 'Water Mission';
 
   public showAlert = true;
-
-  public showImage = true;
 
   public showTitle = true;
 
@@ -20,4 +18,14 @@ export class SkyPageSummaryDemoComponent {
   public showContent = true;
 
   public showKeyInfo = true;
+
+  //
+
+  public showImage = true;
+
+  public avatarUrl: string | File = 'https://pbs.twimg.com/profile_images/748586337012375552/RynqANia.jpg';
+
+  public get src(): string | File {
+    return this.showImage ?  this.avatarUrl : undefined;
+  }
 }
