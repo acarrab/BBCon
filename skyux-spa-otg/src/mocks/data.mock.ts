@@ -720,7 +720,7 @@ let volunteerByEventDictMocks: StringDict<Array<Volunteer>> = {
       lastName: 'Thomas',
       nonprofitName: 'Water Mission ',
       eventId: '2234',
-      hours: 1,
+      hours: 50,
       connections: 0,
       avalancheHours: 0
     }, {

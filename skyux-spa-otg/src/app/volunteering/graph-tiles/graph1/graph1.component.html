@@ -1,3 +1,19 @@
+<style>
+  .skyTileHeight /deep/ {
+    height: 350px;
+    width: 500px;
+  }
+  .skyTileWidth /deep/ {
+    width: 1100px;
+  }
+  .line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+  }
+</style>
+
+<div class="skyTileWidth">
 <sky-tile>
   <sky-tile-title>
     Graph 1
@@ -7,7 +23,9 @@
   </sky-tile-summary>
   <sky-tile-content>
     <sky-tile-content-section>
-      <svg id="graph1"></svg>
+      <div id="graph1" class="skyTileHeight">
+      </div>
     </sky-tile-content-section>
   </sky-tile-content>
 </sky-tile>
+</div>
