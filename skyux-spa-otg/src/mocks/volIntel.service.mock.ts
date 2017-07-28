@@ -15,28 +15,28 @@ import {
 
 export class VolIntelService {
 
-  public async getAllEvents(nonprofitName: string): Promise<Array<NonprofitEvent>> {
+  public getAllEvents(nonprofitName: string): Promise<Array<NonprofitEvent>> {
     // tslint:disable-next-line:max-line-length
-    return new Promise<Array<NonprofitEvent>>(function (resolve, reject) { resolve(nonprofitEventData); });
+    return Promise.resolve(nonprofitEventData);
   }
 
-  public async getVolunteersByNonprofit(nonprofitName: string): Promise<Array<Volunteer>> {
-    return volunteerByNonprofitData;
+  public getVolunteersByNonprofit(nonprofitName: string): Promise<Array<Volunteer>> {
+    return Promise.resolve(volunteerByNonprofitData);
   }
 
-  public async getVolunteersByEvent(eventId: string): Promise<Array<Volunteer>> {
+  public getVolunteersByEvent(eventId: string): Promise<Array<Volunteer>> {
     if (eventId in volunteerByEventDictData) {
-      return volunteerByEventDictData[eventId];
+      return Promise.resolve(volunteerByEventDictData[eventId]);
     }
-    return volunteerByEventData;
+    return Promise.resolve(volunteerByEventData);
   }
 
-  public async getConnectionTree(eventId: string): Promise<ConnectionNode> {
-    return connectionTreeData;
+  public getConnectionTree(eventId: string): Promise<ConnectionNode> {
+    return Promise.resolve(connectionTreeData);
   }
 
-  public async addEvent(nonprofitName: string, name: string, dateTime: string): Promise<string> {
-    return addEventResult;
+  public addEvent(nonprofitName: string, name: string, dateTime: string): Promise<string> {
+    return Promise.resolve(addEventResult);
   }
 
 }

@@ -14,18 +14,12 @@ export class Graph1Component implements OnInit {
   private d3: D3; // <-- Define the private member which will hold the d3 reference
   private parentNativeElement: any;
   private intelService: VolIntelService;
-  private eventData: NonprofitEvent[]; // Array of event objects
+  private eventData: Array<NonprofitEvent>;
 
   constructor(element: ElementRef, d3Service: D3Service, intelService: VolIntelService) {
     this.d3 = d3Service.getD3(); // <-- obtain the d3 object from the D3 Service
     this.parentNativeElement = element.nativeElement;
     this.intelService = intelService;
-
-    this.intelService.getAllEvents('').then(function (result) {
-      this.eventData = this.result;
-      console.log(this.eventData);
-    });
-
   }
 
 /*
@@ -39,7 +33,15 @@ export class Graph1Component implements OnInit {
   }*/
 
   // tslint:disable-next-line
-  ngOnInit() {
+  public ngOnInit() {
+
+    let self = this;
+    this.intelService.getAllEvents('').then(function (result) {
+      self.eventData = result;
+      console.log(self.eventData);
+    }, function (error) {
+      console.log(error);
+    });
     const d3 = this.d3;
     let svg = d3.select('#graph1');
     let margins = {top: 50, right: 50, bottom: 50, left: 50};
