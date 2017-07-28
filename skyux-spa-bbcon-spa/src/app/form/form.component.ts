@@ -7,14 +7,10 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   templateUrl: './form.component.html'
 })
 
-@Component({
-  moduleId: module.id,
-  selector: 'my-form',
-  templateUrl: 'form.component.html',
-})
 export class FormComponent implements OnInit {
     public volunteer: Volunteer; // our model
     constructor(private activatedRoute: ActivatedRoute) {}
+    submitted = false;
 
     ngOnInit() {
       // we will initialize our form here
@@ -28,16 +24,15 @@ export class FormComponent implements OnInit {
           volDate: '',
           referral: ''
       };
-
+      
       this.activatedRoute.queryParams.subscribe((params: Params) => {
-        let referral = params['referralId'];
-        console.log(referral);
-      });
+          let referral = params['referralId'];
+          console.log(referral);
+        });      
     }
 
     save(model: Volunteer, isValid: boolean) {
-        // check if model is valid
-        // if valid, call API to save customer
+        this.submitted = true;
         console.log(model, isValid);
     }
 
