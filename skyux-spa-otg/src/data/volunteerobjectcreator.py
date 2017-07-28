@@ -4,7 +4,7 @@ import csv
 EMAIL = 0
 EVENT_ID = 1
 # EVENT_CONNECTS = 2
-# CONNECTS = 3
+CONNECTS = 3
 FIRST_NAME = 4
 LAST_NAME = 5
 NP = 6
@@ -34,13 +34,38 @@ def writeVolunteerRow(writer, row, isFirstRow, offset=''):
         offset + '    avalancheHours: ' + row[AVALANCHE_HOURS]  + '\n' + 
         offset + '  }')
 
-def writeVolunteerRows(writer, rows, offset=''):
-    isFirstRow = True
-    for row in rows:
-        writeVolunteerRow(writer, row, isFirstRow, offset)
+def writeConnectionTree(writer, eventId, rootDict, offset):
+    root = {
+        'id': eventId,
+        'children': []
+    }
 
-        if isFirstRow:
-            isFirstRow = False
+    for emailKey in rootDict.keys():
+        root['children'].append(rootDict[emailKey])
+
+    writeConnectionNode(writer, root, offset)
+
+def writeConnectionNode(writer, node, offset):
+    writer.write('{\n')
+    writer.write(offset + '  id: \'' + node['id'] + '\',\n')
+    writer.write(offset + '  children: [')
+    isFirstChild = True
+    for child in node['children']:
+        if isFirstChild:
+            isFirstChild = False
+        else:
+            writer.write(', ')
+        writeConnectionNode(writer, child, offset + '  ')
+    writer.write(']\n')
+    writer.write(offset + '}')
+
+def putConnection(emailKey, connectionDict):
+    if not emailKey in connectionDict.keys():
+        connectionDict[emailKey] = {
+            'id': emailKey,
+            'children': []
+        }
+    return connectionDict[emailKey]
 
 with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as events_file, open('volunteers.ts', 'w') as output_ts_file:
     output_ts_file.write('import { NonprofitEvent } from \'../contracts/NonprofitEvent.interface\';\n')
@@ -116,9 +141,15 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     avalancheHours: 0
 }];\n\n''')
 
+    connectionTreeRootsEventDict = dict()
+
     isFirstEntry = True
     output_ts_file.write('let volunteerByEventDictMocks: StringDict<Array<Volunteer>> = {\n')
     for eventId in volunteers_dict.keys():
+        if eventId not in connectionTreeRootsEventDict.keys():
+            connectionTreeRootsEventDict[eventId] = dict()
+        connectionTreeRootsDict = connectionTreeRootsEventDict[eventId]
+
         if isFirstEntry:
             isFirstEntry = False
             output_ts_file.write('   ')
@@ -126,7 +157,19 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
             output_ts_file.write(',')
 
         output_ts_file.write(' \'' + eventId + '\': [')
-        writeVolunteerRows(output_ts_file, volunteers_dict[eventId], '  ')
+        isFirstRow = True
+        for row in volunteers_dict[eventId]:
+            # Track connections!
+            emailKey = row[EMAIL]
+            root = putConnection(emailKey, connectionTreeRootsDict)
+            connections = row[CONNECTS].split(",")
+            for connection in connections:
+                kid = putConnection(connection, connectionTreeRootsDict)
+                root['children'].append(kid)
+
+            writeVolunteerRow(output_ts_file, row, isFirstRow, '  ')
+            if isFirstRow:
+                isFirstRow = False
         output_ts_file.write(']')
     output_ts_file.write('};')
     # Volunteers By Event
@@ -134,6 +177,17 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('\n')
 
     # Connection Tree Mock
+    output_ts_file.write('let connectionTreeDictMock: StringDict<ConnectionNode> = {\n')
+    isFirstEntry = True
+    for eventIdKey in connectionTreeRootsEventDict.keys():
+        if isFirstEntry:
+            isFirstEntry = False
+        else:
+            output_ts_file.write(',')
+        output_ts_file.write('  ' + eventIdKey + ': ')
+        writeConnectionTree(output_ts_file, eventIdKey, connectionTreeRootsEventDict[eventIdKey], '  ')
+    output_ts_file.write('};\n\n')
+
     output_ts_file.write('''let connectionTreeMock: ConnectionNode = {
     id: '',
     children: new Array<ConnectionNode>()
@@ -148,5 +202,6 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('export let nonprofitEventData = nonprofitEventMocks;\n')
     output_ts_file.write('export let volunteerByEventData = volunteerByEventMocks;\n')
     output_ts_file.write('export let volunteerByEventDictData = volunteerByEventDictMocks;\n')
+    output_ts_file.write('export let connectionTreeDictData = connectionTreeDictMock;\n')
     output_ts_file.write('export let connectionTreeData = connectionTreeMock;\n')
     # Export Calls

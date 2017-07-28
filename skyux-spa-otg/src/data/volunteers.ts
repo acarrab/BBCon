@@ -1054,6 +1054,495 @@ let volunteerByEventDictMocks: StringDict<Array<Volunteer>> = {
       connections: 0,
       avalancheHours: 0
     }]};
+let connectionTreeDictMock: StringDict<ConnectionNode> = {
+  1234: {
+    id: '1234',
+    children: [{
+      id: 'joshua.wang@blackbaud.com',
+      children: [{
+        id: 'stew@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }]
+    }, {
+      id: '',
+      children: []
+    }, {
+      id: ' veeha.khanna@blackbaud.com',
+      children: []
+    }, {
+      id: 'alexis.coulter@blackbaud.com',
+      children: [{
+        id: 'janne.ave@blackbaud.com',
+        children: [{
+          id: 'chase.lewis@blackbaud.com',
+          children: [{
+            id: 'linda@example.com',
+            children: [{
+              id: '',
+              children: []
+            }]
+          }]
+        }]
+      }, {
+        id: ' kayla.nussbaum@blackbaud.com',
+        children: []
+      }, {
+        id: ' veeha.khanna@blackbaud.com',
+        children: []
+      }, {
+        id: ' joshua.good@blackbaud.com',
+        children: []
+      }, {
+        id: ' angelo.carrabba@blackbaud.com',
+        children: []
+      }]
+    }, {
+      id: 'kayla.nussbaum@blackbaud.com',
+      children: [{
+        id: 'joshua.wang@blackbaud.com',
+        children: [{
+          id: 'stew@example.com',
+          children: [{
+            id: '',
+            children: []
+          }]
+        }]
+      }, {
+        id: ' joe@example.com',
+        children: []
+      }]
+    }, {
+      id: 'linda@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'jane@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'tom@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' joe@example.com',
+      children: []
+    }, {
+      id: ' angelo.carrabba@blackbaud.com',
+      children: []
+    }, {
+      id: 'james@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'joe@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'veeha.khanna@blackbaud.com',
+      children: [{
+        id: 'bob@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }, {
+        id: ' tim@example.com',
+        children: []
+      }]
+    }, {
+      id: 'bob@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'joshua.good@blackbaud.com',
+      children: [{
+        id: 'tom@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }, {
+        id: ' jane@example.com',
+        children: []
+      }, {
+        id: ' amanda@example.com',
+        children: []
+      }]
+    }, {
+      id: 'chase.lewis@blackbaud.com',
+      children: [{
+        id: 'linda@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }]
+    }, {
+      id: 'janne.ave@blackbaud.com',
+      children: [{
+        id: 'chase.lewis@blackbaud.com',
+        children: [{
+          id: 'linda@example.com',
+          children: [{
+            id: '',
+            children: []
+          }]
+        }]
+      }]
+    }, {
+      id: ' joshua.good@blackbaud.com',
+      children: []
+    }, {
+      id: ' tim@example.com',
+      children: []
+    }, {
+      id: 'tim@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'angelo.carrabba@blackbaud.com',
+      children: [{
+        id: 'james@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }]
+    }, {
+      id: 'amanda@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' amanda@example.com',
+      children: []
+    }, {
+      id: 'stew@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' kayla.nussbaum@blackbaud.com',
+      children: []
+    }, {
+      id: ' jane@example.com',
+      children: []
+    }]
+  },  2234: {
+    id: '2234',
+    children: [{
+      id: '',
+      children: []
+    }, {
+      id: 'winston@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' veeha.khanna@blackbaud.com',
+      children: []
+    }, {
+      id: 'alexis.coulter@blackbaud.com',
+      children: [{
+        id: 'janne.ave@blackbaud.com',
+        children: [{
+          id: 'chase.lewis@blackbaud.com',
+          children: [{
+            id: 'linda@example.com',
+            children: [{
+              id: '',
+              children: []
+            }]
+          }]
+        }]
+      }, {
+        id: ' kayla.nussbaum@blackbaud.com',
+        children: []
+      }, {
+        id: ' veeha.khanna@blackbaud.com',
+        children: []
+      }, {
+        id: ' joshua.good@blackbaud.com',
+        children: []
+      }, {
+        id: ' angelo.carrabba@blackbaud.com',
+        children: []
+      }]
+    }, {
+      id: 'kayla.nussbaum@blackbaud.com',
+      children: [{
+        id: 'joshua.wang@blackbaud.com',
+        children: [{
+          id: 'stew@example.com',
+          children: [{
+            id: '',
+            children: []
+          }]
+        }]
+      }, {
+        id: ' joe@example.com',
+        children: []
+      }]
+    }, {
+      id: 'zeus@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'linda@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'angelo.carrabba@blackbaud.com',
+      children: [{
+        id: 'james@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }]
+    }, {
+      id: 'tom@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'corey@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' joe@example.com',
+      children: []
+    }, {
+      id: 'eren.jaeger@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'joshua.wang@blackbaud.com',
+      children: [{
+        id: 'stew@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }]
+    }, {
+      id: 'link@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' angelo.carrabba@blackbaud.com',
+      children: []
+    }, {
+      id: 'james@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' amanda@example.com',
+      children: []
+    }, {
+      id: 'veeha.khanna@blackbaud.com',
+      children: [{
+        id: 'bob@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }, {
+        id: ' tim@example.com',
+        children: []
+      }]
+    }, {
+      id: 'brad@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'joshua.good@blackbaud.com',
+      children: [{
+        id: 'tom@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }, {
+        id: ' jane@example.com',
+        children: []
+      }, {
+        id: ' amanda@example.com',
+        children: []
+      }]
+    }, {
+      id: 'lorie@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'boaz.priestly@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'chase.lewis@blackbaud.com',
+      children: [{
+        id: 'linda@example.com',
+        children: [{
+          id: '',
+          children: []
+        }]
+      }]
+    }, {
+      id: 'jack.sparrow@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'janne.ave@blackbaud.com',
+      children: [{
+        id: 'chase.lewis@blackbaud.com',
+        children: [{
+          id: 'linda@example.com',
+          children: [{
+            id: '',
+            children: []
+          }]
+        }]
+      }]
+    }, {
+      id: 'tony@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' joshua.good@blackbaud.com',
+      children: []
+    }, {
+      id: ' tim@example.com',
+      children: []
+    }, {
+      id: 'tim@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'zarya@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'tracer@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'amanda@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'zelda@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'joe@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'mcree@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'tingle@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'stew@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: ' kayla.nussbaum@blackbaud.com',
+      children: []
+    }, {
+      id: ' jane@example.com',
+      children: []
+    }, {
+      id: 'jane@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'bob@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'thomas@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }, {
+      id: 'samantha@example.com',
+      children: [{
+        id: '',
+        children: []
+      }]
+    }]
+  }};
+
 let connectionTreeMock: ConnectionNode = {
     id: '',
     children: new Array<ConnectionNode>()
@@ -1063,4 +1552,5 @@ export let volunteerByNonprofitData = volunteerByNonprofitMocks;
 export let nonprofitEventData = nonprofitEventMocks;
 export let volunteerByEventData = volunteerByEventMocks;
 export let volunteerByEventDictData = volunteerByEventDictMocks;
+export let connectionTreeDictData = connectionTreeDictMock;
 export let connectionTreeData = connectionTreeMock;
