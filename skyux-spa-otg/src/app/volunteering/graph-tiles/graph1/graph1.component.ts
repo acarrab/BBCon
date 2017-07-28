@@ -16,30 +16,86 @@ export class Graph1Component implements OnInit {
   private parentNativeElement: any;
   private intelService: VolIntelService;
   private eventData: Array<NonprofitEvent>;
+  private data = [];
 
   constructor(element: ElementRef, d3Service: D3Service, intelService: VolIntelService) {
     this.d3 = d3Service.getD3(); // <-- obtain the d3 object from the D3 Service
     this.parentNativeElement = element.nativeElement;
     this.intelService = intelService;
     this.generateD3Data(this);
+    console.log(this.data);
   }
 
   private generateD3Data (self: any) {
     // Get event data
     self.intelService.getAllEvents('')
       .then(function (eventData) {
+        self.eventData = eventData;
         let promises = new Array<Promise<Array<Volunteer>>>();
-        console.log(self);
         for (const event of eventData) {
           promises.push(self.intelService.getVolunteersByEvent(event.id));
         }
         return Promise.all(promises);
       })
-      .then(self.formatEventAndVolunteerData);
+      .then(function (rayray) { self.formatEventAndVolunteerData(self, rayray); });
   }
 
-  private formatEventAndVolunteerData (rayray: Array<Array<Volunteer>>) {
-    console.log(rayray);
+  private formatEventAndVolunteerData (self: any, rayray: Array<Array<Volunteer>>) {
+    // for (const event of self.eventData) {
+      let totalVolunteerHours: number;
+      let numOfVolunteers: number;
+      let eventName: string;
+      let dateTime: string;
+
+      for (const eventVolunteerData of rayray) {
+        numOfVolunteers = eventVolunteerData.length;
+        totalVolunteerHours = 0;
+        let eventId: string;
+        for (const volunteer of eventVolunteerData) {
+          totalVolunteerHours += volunteer.hours;
+          eventId = volunteer.eventId;
+        }
+
+        // Find event data
+        for (const event of self.eventData) {
+          if (event.id === eventId) {
+            eventName = event.name;
+            dateTime = event.dateTime;
+          }
+        }
+
+        self.data.push({
+          eventName: eventName,
+          date: dateTime,
+          numOfVolunteers: numOfVolunteers,
+          totalVolunteerHours: totalVolunteerHours
+        });
+      }
+
+      // ADDING MY OWN DATA
+      self.data.push({
+        eventName: 'Family Volunteer Day',
+        date: '8/15/2017',
+        numOfVolunteers: 50,
+        totalVolunteerHours: 150
+      }, {
+        eventName: 'Sam\'s 5k',
+        date: '5/24/2017',
+        numOfVolunteers: 10,
+        totalVolunteerHours: 100
+      },
+      {
+        eventName: 'Beach Clean Up',
+        date: '3/1/2017',
+        numOfVolunteers: 100,
+        totalVolunteerHours: 200
+      }, {
+        eventName: 'Local Love',
+        date: '2/14/2017',
+        numOfVolunteers: 66,
+        totalVolunteerHours: 90
+      });
+//    }
   }
 
   // tslint:disable-next-line
@@ -47,23 +103,95 @@ export class Graph1Component implements OnInit {
     const d3 = this.d3;
     let svg = d3.select('#graph1');
     let margins = {top: 50, right: 50, bottom: 50, left: 50};
-    let width = +svg.attr('width') - margins.left - margins.right;
-    let height = +svg.attr('height') - margins.top - margins.bottom;
+    let width =  1000 - margins.left - margins.right;
+    let height = 300 - margins.top - margins.bottom;
+
+    svg = svg.append('svg')
+      .attr('width', width + margins.left + margins.right)
+      .attr('height', height + margins.top + margins.bottom)
+      .append('g')
+      .attr('transform', 'translate(' + margins.left + ',' + margins.top + ')');
+
     // tslint:disable-next-line:max-line-length
-    /*
-    let g = svg.append('g').attr('transform', 'translate(' + margins.left + ',' + margins.top + ')');
 
-    let parseTime = d3.timeParse('%d/%b/%y');
+    // Settings the scales
+    let dateXScale = d3.scaleTime()
+        .rangeRound([0, width])
+        .domain(d3.extent(this.data, function (d) {
+          const dateString = d.date;
+          const dateParser = d3.timeParse('%m/%d/%Y');
+          return dateParser(dateString);
+        }));
 
-    let x = d3.scaleTime()
-        .rangeRound([0, width]);
+    let volunteerYScale = d3.scaleLinear()
+        .rangeRound([height, 0])
+        .domain([
+          0,
+          d3.max(this.data, function (d) { return d.totalVolunteerHours; })
+        ]);
 
-    let y = d3.scaleLinear()
-        .rangeRound([height, 0]);
+    let hoursYScale = d3.scaleLinear()
+        .rangeRound([height, 0])
+        .domain([
+          0,
+         (d3.max(this.data, function (d) { return d.numOfVolunteers; }) + 200)
+        ]);
 
-    let line = d3.line()
-        .x(function(d) { return x(d.date); })
-        .y(function(d) { return y(d.close); });
-    */
+    // Settings the line function
+    let volunteerLine = d3.line()
+                          .x(function (d: any) {
+                              const dateString = d.date;
+                              const dateParser = d3.timeParse('%m/%d/%Y');
+                              return dateXScale(dateParser(dateString));
+                          })
+                          .y(function (d: any) {
+                            return volunteerYScale(d.numOfVolunteers);
+                          });
+
+    let hoursLine = d3.line()
+                          .x(function (d: any) {
+                              const dateString = d.date;
+                              const dateParser = d3.timeParse('%m/%d/%Y');
+                              return dateXScale(dateParser(dateString));
+                          })
+                          .y(function (d: any) {
+                            return hoursYScale(d.totalVolunteerHours);
+                          });
+
+    // Setting the axis
+    let dateXAxis = d3.axisBottom(dateXScale).tickSize(5);
+
+    let volunteerYAxis = d3.axisLeft(volunteerYScale).tickSize(5);
+
+    let hoursYAxis = d3.axisRight(hoursYScale).tickSize(5);
+
+    // Draw Axis Lines
+    svg.append('g')
+        .call(dateXAxis)
+        .attr('transform', 'translate(0,' + height + ')');
+
+    svg.append('g')
+        .call(volunteerYAxis);
+
+    svg.append('g')
+        .call(hoursYAxis)
+        .attr('transform', 'translate(' + width + ',0)');
+
+    // Draw lines
+    svg.append('path')
+        .datum(this.data)
+        .attr('class', 'line')
+        .attr('d', volunteerLine)
+        .style('fill', 'none')
+        .style('stroke', 'steelblue')
+        .style('stroke-width', '2px');
+
+    svg.append('path')
+        .datum(this.data)
+        .attr('class', 'line')
+        .attr('d', hoursLine)
+        .style('fill', 'none')
+        .style('stroke', 'red')
+        .style('stroke-width', '2px');
   }
 }
