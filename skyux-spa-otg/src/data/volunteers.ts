@@ -2,8 +2,7 @@ import { NonprofitEvent } from '../contracts/NonprofitEvent.interface';
 import { Volunteer } from '../contracts/Volunteer.interface';
 import { ConnectionNode } from '../contracts/ConnectionNode.interface';
 
-let volunteerByNonprofitMocks: Array<Volunteer> = [
-  {
+let volunteerByNonprofitMocks: Array<Volunteer> = [{
     id: '',
     email: 'alexis.coulter@blackbaud.com',
     firstName: 'Alexis',
@@ -13,8 +12,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 10,
     avalancheHours: 41
-  },
-  {
+  }, {
     id: '',
     email: 'janne.ave@blackbaud.com',
     firstName: 'Janne',
@@ -24,8 +22,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 2,
     avalancheHours: 10
-  },
-  {
+  }, {
     id: '',
     email: 'kayla.nussbaum@blackbaud.com',
     firstName: 'Kayla',
@@ -35,8 +32,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 4,
     avalancheHours: 11
-  },
-  {
+  }, {
     id: '',
     email: 'veeha.khanna@blackbaud.com',
     firstName: 'Veeha',
@@ -46,8 +42,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 4,
     avalancheHours: 7
-  },
-  {
+  }, {
     id: '',
     email: 'joshua.good@blackbaud.com',
     firstName: 'Joshua',
@@ -57,8 +52,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 6,
     avalancheHours: 7
-  },
-  {
+  }, {
     id: '',
     email: 'angelo.carrabba@blackbaud.com',
     firstName: 'Angelo',
@@ -68,8 +62,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 2,
     avalancheHours: 4
-  },
-  {
+  }, {
     id: '',
     email: 'chase.lewis@blackbaud.com',
     firstName: 'Chase',
@@ -79,8 +72,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 2,
     avalancheHours: 7
-  },
-  {
+  }, {
     id: '',
     email: 'joshua.wang@blackbaud.com',
     firstName: 'Joshua',
@@ -90,8 +82,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 2,
     avalancheHours: 6
-  },
-  {
+  }, {
     id: '',
     email: 'joe@example.com',
     firstName: 'Joe',
@@ -101,8 +92,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'bob@example.com',
     firstName: 'Bob',
@@ -112,8 +102,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'tim@example.com',
     firstName: 'Tim',
@@ -123,8 +112,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'tom@example.com',
     firstName: 'Tom',
@@ -134,8 +122,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'jane@example.com',
     firstName: 'Jane',
@@ -145,8 +132,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'amanda@example.com',
     firstName: 'Amanda',
@@ -156,8 +142,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'james@example.com',
     firstName: 'James',
@@ -167,8 +152,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'linda@example.com',
     firstName: 'Linda',
@@ -178,8 +162,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'stew@example.com',
     firstName: 'Stew',
@@ -189,8 +172,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'thomas@example.com',
     firstName: 'Thomas',
@@ -200,8 +182,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'lorie@example.com',
     firstName: 'Lorie',
@@ -211,8 +192,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'tony@example.com',
     firstName: 'Tony',
@@ -222,8 +202,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'brad@example.com',
     firstName: 'Brad',
@@ -233,8 +212,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'corey@example.com',
     firstName: 'Corey',
@@ -244,8 +222,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'samantha@example.com',
     firstName: 'Samantha',
@@ -255,8 +232,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'zeus@example.com',
     firstName: 'Zeus',
@@ -266,8 +242,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'boaz.priestly@example.com',
     firstName: 'Boaz',
@@ -277,8 +252,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'eren.jaeger@example.com',
     firstName: 'Eren',
@@ -288,8 +262,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'winston@example.com',
     firstName: 'Winston',
@@ -299,8 +272,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'tracer@example.com',
     firstName: 'Tracer',
@@ -310,8 +282,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'mcree@example.com',
     firstName: 'Mcree',
@@ -321,8 +292,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'zelda@example.com',
     firstName: 'Zelda',
@@ -332,8 +302,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 5,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'link@example.com',
     firstName: 'Link',
@@ -343,8 +312,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'zarya@example.com',
     firstName: 'Zarya',
@@ -354,8 +322,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'tingle@example.com',
     firstName: 'Tingle',
@@ -365,8 +332,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'jack.sparrow@example.com',
     firstName: 'Jack',
@@ -376,8 +342,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'alexis.coulter@blackbaud.com',
     firstName: 'Alexis',
@@ -387,8 +352,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 10,
     avalancheHours: 41
-  },
-  {
+  }, {
     id: '',
     email: 'janne.ave@blackbaud.com',
     firstName: 'Janne',
@@ -398,8 +362,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 2,
     avalancheHours: 10
-  },
-  {
+  }, {
     id: '',
     email: 'kayla.nussbaum@blackbaud.com',
     firstName: 'Kayla',
@@ -409,8 +372,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 4,
     avalancheHours: 11
-  },
-  {
+  }, {
     id: '',
     email: 'veeha.khanna@blackbaud.com',
     firstName: 'Veeha',
@@ -420,8 +382,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 4,
     avalancheHours: 7
-  },
-  {
+  }, {
     id: '',
     email: 'joshua.good@blackbaud.com',
     firstName: 'Joshua',
@@ -431,8 +392,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 6,
     avalancheHours: 7
-  },
-  {
+  }, {
     id: '',
     email: 'angelo.carrabba@blackbaud.com',
     firstName: 'Angelo',
@@ -442,8 +402,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 2,
     avalancheHours: 4
-  },
-  {
+  }, {
     id: '',
     email: 'chase.lewis@blackbaud.com',
     firstName: 'Chase',
@@ -453,8 +412,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 2,
     avalancheHours: 7
-  },
-  {
+  }, {
     id: '',
     email: 'joshua.wang@blackbaud.com',
     firstName: 'Joshua',
@@ -464,8 +422,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 2,
     avalancheHours: 6
-  },
-  {
+  }, {
     id: '',
     email: 'joe@example.com',
     firstName: 'Joe',
@@ -475,8 +432,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'bob@example.com',
     firstName: 'Bob',
@@ -486,8 +442,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'tim@example.com',
     firstName: 'Tim',
@@ -497,8 +452,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'tom@example.com',
     firstName: 'Tom',
@@ -508,8 +462,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'jane@example.com',
     firstName: 'Jane',
@@ -519,8 +472,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'amanda@example.com',
     firstName: 'Amanda',
@@ -530,8 +482,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 1,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'james@example.com',
     firstName: 'James',
@@ -541,8 +492,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 2,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'linda@example.com',
     firstName: 'Linda',
@@ -552,8 +502,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 3,
     connections: 0,
     avalancheHours: 0
-  },
-  {
+  }, {
     id: '',
     email: 'stew@example.com',
     firstName: 'Stew',
@@ -563,21 +512,17 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 0,
     avalancheHours: 0
-  }
-];
+  }];
 
-let nonprofitEventMocks: Array<NonprofitEvent> = [
-  {
+let nonprofitEventMocks: Array<NonprofitEvent> = [{
     id: '1234',
     name: 'Christmas Party',
     dateTime: '12/20/2017'
-  },
-  {
+  }, {
     id: '2234',
     name: 'Warehouse Inventory',
     dateTime: '9/10/2017'
-  }
-];
+  }];
 
 let volunteerByEventMocks: Array<Volunteer> = [{
     id: '',
@@ -593,12 +538,11 @@ let volunteerByEventMocks: Array<Volunteer> = [{
     connections: 0,
     avalancheHours: 0
 }];
-
 let connectionTreeMock: ConnectionNode = {
     id: '',
     children: new Array<ConnectionNode>()
 };
-
+export let addEventResult: string = 'fakeEventId';
 export let volunteerByNonprofitData = volunteerByNonprofitMocks;
 export let nonprofitEventData = nonprofitEventMocks;
 export let volunteerByEventData = volunteerByEventMocks;

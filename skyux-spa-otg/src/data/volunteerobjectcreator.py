@@ -24,13 +24,19 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('\n')
 
     # Volunteers By Non-Profit 
-    output_ts_file.write('let volunteerByNonprofitMocks: Array<Volunteer> = [\n')
+    output_ts_file.write('let volunteerByNonprofitMocks: Array<Volunteer> = [')
     volunteers_file = csv.reader(volunteers_file, delimiter='\t')
 
     next(volunteers_file)   # skip headers
 
+    isFirstRow = True
     for row in volunteers_file:     # row is an array
-        output_ts_file.write('  {' + '\n' + 
+        if isFirstRow:
+            isFirstRow = False
+        else:
+            output_ts_file.write(', ')
+
+        output_ts_file.write('{' + '\n' + 
                              '    id: \'\',' + '\n' + 
                              '    email: \'' + row[EMAIL] + '\',' + '\n' + 
                              '    firstName: \'' + row[FIRST_NAME] + '\',' + '\n' + 
@@ -40,7 +46,7 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
                              '    hours: ' + row[IND_HOURS] + ',' + '\n' + 
                              '    connections: ' + row[TOTAL_CONNECTS] + ',' + '\n' + 
                              '    avalancheHours: ' + row[AVALANCHE_HOURS]  + '\n' + 
-                             '  },\n')
+                             '  }')
         # print (row)
     
     output_ts_file.write('];\n')
@@ -49,17 +55,24 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('\n')
 
     # Events
-    output_ts_file.write('let nonprofitEventMocks: Array<NonprofitEvent> = [\n')
+    output_ts_file.write('let nonprofitEventMocks: Array<NonprofitEvent> = [')
     events_file = csv.reader(events_file, delimiter='\t')
 
     next(events_file)       # skip headers
 
+    isFirstRow = True
     for row in events_file:
-        output_ts_file.write('  {' + '\n' + 
+        if isFirstRow:
+            isFirstRow = False
+        else:
+            output_ts_file.write(', ')
+
+        output_ts_file.write('{' + '\n' + 
                              '    id: \'' + row[EVENT_ID] + '\',' + '\n' + 
                              '    name: \'' + row[EVENT_NAME] + '\',' + '\n' + 
                              '    dateTime: \'' + row[EVENT_DATE] + '\'' + '\n' + 
-                             '  },\n')
+                             '  }')
+
 
     output_ts_file.write('];\n')
     # Events
@@ -67,7 +80,7 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('\n')
 
     # Volunteers By Event
-    output_ts_file.write('''let volunteerByEventMocks: Array<Volunteer> = [{ 
+    output_ts_file.write('''let volunteerByEventMocks: Array<Volunteer> = [{
     id: '',
 
     email: '',
@@ -80,7 +93,7 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     hours: 0,
     connections: 0,
     avalancheHours: 0
-    }];''')
+}];''')
     # Volunteers By Event
 
     output_ts_file.write('\n')
@@ -89,17 +102,15 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('''let connectionTreeMock: ConnectionNode = {
     id: '',
     children: new Array<ConnectionNode>()
-    };''')
+};''')
     # Connection Tree Mock
 
     output_ts_file.write('\n')
 
     # Export Calls
-    output_ts_file.write('export let addEventResult: string = \'fakeEventId\;\n')
+    output_ts_file.write('export let addEventResult: string = \'fakeEventId\';\n')
     output_ts_file.write('export let volunteerByNonprofitData = volunteerByNonprofitMocks;\n')
     output_ts_file.write('export let nonprofitEventData = nonprofitEventMocks;\n')
     output_ts_file.write('export let volunteerByEventData = volunteerByEventMocks;\n')
     output_ts_file.write('export let connectionTreeData = connectionTreeMock;\n')
     # Export Calls
-
-    output_ts_file.write('\n')
