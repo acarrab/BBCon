@@ -13,9 +13,34 @@ IND_HOURS = 8
 TOTAL_CONNECTS = 9
 
 # Index of headers in volunteer tsv file
-EVENT_ID = 0
-EVENT_NAME = 1
-EVENT_DATE = 2
+EEVENT_ID = 0
+EEVENT_NAME = 1
+EEVENT_DATE = 2
+
+def writeVolunteerRow(writer, row, isFirstRow, offset=''):
+    if not isFirstRow:
+        writer.write(', ')
+    
+    writer.write(
+        '{' + '\n' + 
+        offset + '    id: \'\',' + '\n' + 
+        offset + '    email: \'' + row[EMAIL] + '\',' + '\n' + 
+        offset + '    firstName: \'' + row[FIRST_NAME] + '\',' + '\n' + 
+        offset + '    lastName: \'' + row[LAST_NAME] + '\',' + '\n' + 
+        offset + '    nonprofitName: \'' + row[NP] + '\',' + '\n' + 
+        offset + '    eventId: \'' + row[EVENT_ID] + '\',' + '\n' + 
+        offset + '    hours: ' + row[IND_HOURS] + ',' + '\n' + 
+        offset + '    connections: ' + row[TOTAL_CONNECTS] + ',' + '\n' + 
+        offset + '    avalancheHours: ' + row[AVALANCHE_HOURS]  + '\n' + 
+        offset + '  }')
+
+def writeVolunteerRows(writer, rows, offset=''):
+    isFirstRow = True
+    for row in rows:
+        writeVolunteerRow(writer, row, isFirstRow, offset)
+
+        if isFirstRow:
+            isFirstRow = False
 
 with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as events_file, open('volunteers.ts', 'w') as output_ts_file:
     output_ts_file.write('import { NonprofitEvent } from \'../contracts/NonprofitEvent.interface\';\n')
@@ -23,7 +48,12 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('import { ConnectionNode } from \'../contracts/ConnectionNode.interface\';\n')
     output_ts_file.write('\n')
 
+    output_ts_file.write('''interface StringDict<T> {
+    [key: string]: T;
+}\n''')
+
     # Volunteers By Non-Profit 
+    volunteers_dict = dict()
     output_ts_file.write('let volunteerByNonprofitMocks: Array<Volunteer> = [')
     volunteers_file = csv.reader(volunteers_file, delimiter='\t')
 
@@ -31,24 +61,15 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
 
     isFirstRow = True
     for row in volunteers_file:     # row is an array
+        if not row[EVENT_ID] in volunteers_dict:
+            volunteers_dict[row[EVENT_ID]] = []
+        volunteers_dict[row[EVENT_ID]].append(row)
+
+        writeVolunteerRow(output_ts_file, row, isFirstRow)
         if isFirstRow:
             isFirstRow = False
-        else:
-            output_ts_file.write(', ')
-
-        output_ts_file.write('{' + '\n' + 
-                             '    id: \'\',' + '\n' + 
-                             '    email: \'' + row[EMAIL] + '\',' + '\n' + 
-                             '    firstName: \'' + row[FIRST_NAME] + '\',' + '\n' + 
-                             '    lastName: \'' + row[LAST_NAME] + '\',' + '\n' + 
-                             '    nonprofitName: \'' + row[NP] + '\',' + '\n' + 
-                             '    eventId: \'' + row[EVENT_ID] + '\',' + '\n' + 
-                             '    hours: ' + row[IND_HOURS] + ',' + '\n' + 
-                             '    connections: ' + row[TOTAL_CONNECTS] + ',' + '\n' + 
-                             '    avalancheHours: ' + row[AVALANCHE_HOURS]  + '\n' + 
-                             '  }')
         # print (row)
-    
+
     output_ts_file.write('];\n')
     # Volunteers By Non-Profit 
 
@@ -68,9 +89,9 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
             output_ts_file.write(', ')
 
         output_ts_file.write('{' + '\n' + 
-                             '    id: \'' + row[EVENT_ID] + '\',' + '\n' + 
-                             '    name: \'' + row[EVENT_NAME] + '\',' + '\n' + 
-                             '    dateTime: \'' + row[EVENT_DATE] + '\'' + '\n' + 
+                             '    id: \'' + row[EEVENT_ID] + '\',' + '\n' + 
+                             '    name: \'' + row[EEVENT_NAME] + '\',' + '\n' + 
+                             '    dateTime: \'' + row[EEVENT_DATE] + '\'' + '\n' + 
                              '  }')
 
 
@@ -93,7 +114,21 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     hours: 0,
     connections: 0,
     avalancheHours: 0
-}];''')
+}];\n\n''')
+
+    isFirstEntry = True
+    output_ts_file.write('let volunteerByEventDictMocks: StringDict<Array<Volunteer>> = {\n')
+    for eventId in volunteers_dict.keys():
+        if isFirstEntry:
+            isFirstEntry = False
+            output_ts_file.write('   ')
+        else:
+            output_ts_file.write(',')
+
+        output_ts_file.write(' \'' + eventId + '\': [')
+        writeVolunteerRows(output_ts_file, volunteers_dict[eventId], '  ')
+        output_ts_file.write(']')
+    output_ts_file.write('};')
     # Volunteers By Event
 
     output_ts_file.write('\n')
@@ -112,5 +147,6 @@ with open('volunteers.tsv', 'r') as volunteers_file, open('events.tsv', 'r') as 
     output_ts_file.write('export let volunteerByNonprofitData = volunteerByNonprofitMocks;\n')
     output_ts_file.write('export let nonprofitEventData = nonprofitEventMocks;\n')
     output_ts_file.write('export let volunteerByEventData = volunteerByEventMocks;\n')
+    output_ts_file.write('export let volunteerByEventDictData = volunteerByEventDictMocks;\n')
     output_ts_file.write('export let connectionTreeData = connectionTreeMock;\n')
     # Export Calls

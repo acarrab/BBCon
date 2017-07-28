@@ -7,6 +7,7 @@ import {
   nonprofitEventData,
   volunteerByNonprofitData,
   volunteerByEventData,
+  volunteerByEventDictData,
   connectionTreeData
 } from '../mocks/data.mock';
 
@@ -23,6 +24,9 @@ export class VolIntelService {
   }
 
   public async getVolunteersByEvent(eventId: string): Promise<Array<Volunteer>> {
+    if (eventId in volunteerByEventDictData) {
+      return volunteerByEventDictData[eventId];
+    }
     return volunteerByEventData;
   }
 
