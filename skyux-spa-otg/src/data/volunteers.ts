@@ -563,7 +563,7 @@ let volunteerByNonprofitMocks: Array<Volunteer> = [
     hours: 4,
     connections: 0,
     avalancheHours: 0
-  },
+  }
 ];
 
 let nonprofitEventMocks: Array<NonprofitEvent> = [
@@ -576,10 +576,10 @@ let nonprofitEventMocks: Array<NonprofitEvent> = [
     id: '2234',
     name: 'Warehouse Inventory',
     dateTime: '9/10/2017'
-  },
+  }
 ];
 
-let volunteerByEventMocks: Array<Volunteer> = [{ 
+let volunteerByEventMocks: Array<Volunteer> = [{
     id: '',
 
     email: '',
@@ -601,4 +601,3 @@ export let volunteerByNonprofitData = volunteerByNonprofitMocks;
 export let nonprofitEventData = nonprofitEventMocks;
 export let volunteerByEventData = volunteerByEventMocks;
 export let connectionTreeData = connectionTreeMock;
-
