@@ -1,0 +1,52 @@
+EMAIL	EVENT_ID	EVENT_CONNECTS	CONNECTS	FIRST_NAME	LAST_NAME	NP	AVALANCHE_HOURS	IND_HOURS	TOTAL_CONNECTS
+alexis.coulter@blackbaud.com	1234	5	janne.ave@blackbaud.com, kayla.nussbaum@blackbaud.com, veeha.khanna@blackbaud.com, joshua.good@blackbaud.com, angelo.carrabba@blackbaud.com	Alexis	Coulter	Water Mission	41	2	10
+janne.ave@blackbaud.com	1234	1	chase.lewis@blackbaud.com	Janne	Ave	Water Mission	10	3	2
+kayla.nussbaum@blackbaud.com	1234	2	joshua.wang@blackbaud.com, joe@example.com	Kayla	Nussbaum	Water Mission	11	2	4
+veeha.khanna@blackbaud.com	1234	2	bob@example.com, tim@example.com	Veeha	Khanna	Water Mission	7	1	4
+joshua.good@blackbaud.com	1234	3	tom@example.com, jane@example.com, amanda@example.com	Joshua	Good	Water Mission	7	4	6
+angelo.carrabba@blackbaud.com	1234	1	james@example.com	Angelo	Carrabba	Water Mission	4	2	2
+chase.lewis@blackbaud.com	1234	1	linda@example.com	Chase	Lewis	Water Mission	7	4	2
+joshua.wang@blackbaud.com	1234	1	stew@example.com	Joshua	Wang	Water Mission	6	2	2
+joe@example.com	1234	0		Joe	Joe	Water Mission 	0	3	0
+bob@example.com	1234	0		Bob	Bob 	Water Mission 	0	3	0
+tim@example.com	1234	0		Tim	Tim	Water Mission 	0	3	0
+tom@example.com	1234	0		Tom	Tom	Water Mission 	0	1	0
+jane@example.com	1234	0		Jane	Jane	Water Mission 	0	1	0
+amanda@example.com	1234	0		Amanda	Amanda	Water Mission 	0	1	0
+james@example.com	1234	0		James	James	Water Mission 	0	2	0
+linda@example.com	1234	0		Linda	Linda	Water Mission 	0	3	0
+stew@example.com	1234	0		Stew	Stew	Water Mission 	0	4	0
+thomas@example.com	2234	0		Thomas	Thomas	Water Mission 	0	1	0
+lorie@example.com	2234	0		Lorie	Lorie	Water Mission 	0	1	0
+tony@example.com	2234	0		Tony	Tony	Water Mission 	0	1	0
+brad@example.com	2234	0		Brad	Brad	Water Mission 	0	1	0
+corey@example.com	2234	0		Corey	Corey	Water Mission 	0	2	0
+samantha@example.com	2234	0		Samantha	Samantha	Water Mission 	0	2	0
+zeus@example.com	2234	0		Zeus	Zeus	Water Mission 	0	2	0
+boaz.priestly@example.com	2234	0		Boaz	Priestly	Water Mission 	0	3	0
+eren.jaeger@example.com	2234	0		Eren	Jeager	Water Mission 	0	2	0
+winston@example.com	2234	0		Winston	Winston	Water Mission 	0	2	0
+tracer@example.com	2234	0		Tracer	Tracer	Water Mission 	0	2	0
+mcree@example.com	2234	0		Mcree	Mcree	Water Mission 	0	3	0
+zelda@example.com	2234	0		Zelda	Zelda	Water Mission 	0	5	0
+link@example.com	2234	0		Link	Link	Water Mission 	0	4	0
+zarya@example.com	2234	0		Zarya	Zarya	Water Mission 	0	3	0
+tingle@example.com	2234	0		Tingle	Tingle 	Water Mission 	0	2	0
+jack.sparrow@example.com	2234	0		Jack	Sparrow	Water Mission 	0	1	0
+alexis.coulter@blackbaud.com	2234	5	janne.ave@blackbaud.com, kayla.nussbaum@blackbaud.com, veeha.khanna@blackbaud.com, joshua.good@blackbaud.com, angelo.carrabba@blackbaud.com	Alexis	Coulter	Water Mission 	41	2	10
+janne.ave@blackbaud.com	2234	1	chase.lewis@blackbaud.com	Janne	Ave	Water Mission 	10	3	2
+kayla.nussbaum@blackbaud.com	2234	2	joshua.wang@blackbaud.com, joe@example.com	Kayla	Nussbaum	Water Mission 	11	2	4
+veeha.khanna@blackbaud.com	2234	2	bob@example.com, tim@example.com	Veeha	Khanna	Water Mission 	7	1	4
+joshua.good@blackbaud.com	2234	3	tom@example.com, jane@example.com, amanda@example.com	Joshua	Good	Water Mission 	7	4	6
+angelo.carrabba@blackbaud.com	2234	1	james@example.com	Angelo	Carrabba	Water Mission 	4	2	2
+chase.lewis@blackbaud.com	2234	1	linda@example.com	Chase	Lewis	Water Mission 	7	4	2
+joshua.wang@blackbaud.com	2234	1	stew@example.com	Joshua	Wang	Water Mission 	6	2	2
+joe@example.com	2234	0		Joe	Joe	Water Mission 	0	3	0
+bob@example.com	2234	0		Bob	Bob 	Water Mission 	0	3	0
+tim@example.com	2234	0		Tim	Tim	Water Mission 	0	3	0
+tom@example.com	2234	0		Tom	Tom	Water Mission 	0	1	0
+jane@example.com	2234	0		Jane	Jane	Water Mission 	0	1	0
+amanda@example.com	2234	0		Amanda	Amanda	Water Mission 	0	1	0
+james@example.com	2234	0		James	James	Water Mission 	0	2	0
+linda@example.com	2234	0		Linda	Linda	Water Mission 	0	3	0
+stew@example.com	2234	0		Stew	Stew	Water Mission 	0	4	0

@@ -1,9 +1,20 @@
-<sky-tile>
+<style>
+  .skyTileHeight /deep/ {
+    height: 1000px;
+  }
+</style>
+
+
+<sky-tile class="skyTileHeight">
   <sky-tile-title>
     Graph 2
   </sky-tile-title>
-  <sky-tile-summary>Line Graph</sky-tile-summary>
+  <sky-tile-summary>
+    This graphs shows the summary of Graph 2.
+  </sky-tile-summary>
   <sky-tile-content>
-      <svg></svg>
+    <sky-tile-content-section >
+      <svg id="graph2" class="skyTileHeight"></svg>
+    </sky-tile-content-section>
   </sky-tile-content>
 </sky-tile>
