@@ -16,7 +16,8 @@ import {
 export class VolIntelService {
 
   public async getAllEvents(nonprofitName: string): Promise<Array<NonprofitEvent>> {
-    return nonprofitEventData;
+    // tslint:disable-next-line:max-line-length
+    return new Promise<Array<NonprofitEvent>>(function (resolve, reject) { resolve(nonprofitEventData); });
   }
 
   public async getVolunteersByNonprofit(nonprofitName: string): Promise<Array<Volunteer>> {
